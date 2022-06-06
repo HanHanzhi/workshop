@@ -1,9 +1,12 @@
 /**
  * SPDX-License-Identifier:MIT
  */
+
+ //gsnv2 guide fork
+
 pragma solidity ^0.7.6;
 
-contract CaptureTheFlag {
+contract CaptureTheFlag is b{
 
     event FlagCaptured(address previousHolder, address currentHolder);
 
