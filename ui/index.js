@@ -3,6 +3,7 @@ const { RelayProvider } = require("@opengsn/provider");
 const paymasterAddress = require("../build/gsn/Paymaster").address;
 const contractArtifact = require("../build/contracts/CaptureTheFlag.json");
 const contractAbi = contractArtifact.abi;
+const paymasterArtifact = require("../build/contracts/WhitelistPaymaster.json");
 
 let theContract;
 let provider;
@@ -20,11 +21,14 @@ async function initContract() {
     window.location.reload();
   });
   const networkId = await window.ethereum.request({ method: "net_version" });
-
+  /////// adding of whitelistPaymasterAddress
+  const whitelistPaymasterAddress =
+    paymasterArtifact.networks[networkId].address;
+  //////
   const gsnProvider = await RelayProvider.newProvider({
     provider: window.ethereum,
     config: {
-      paymasterAddress,
+      paymasterAddress: whitelistPaymasterAddress,
     },
   }).init();
 
